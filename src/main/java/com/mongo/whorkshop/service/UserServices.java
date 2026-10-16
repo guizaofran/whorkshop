@@ -48,6 +48,6 @@ public class UserServices {
 
     private void updateData(User newObj, User obj) {
         newObj.setName(obj.getName());
-        newObj.setName(obj.getEmail());
+        newObj.setEmail(obj.getEmail());
     }
 }
