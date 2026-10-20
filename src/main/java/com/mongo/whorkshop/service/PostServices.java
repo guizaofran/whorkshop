@@ -24,4 +24,8 @@ public class PostServices {
        }
        return user;
     }
+
+    public List<Post> findByTitle (String text){
+        return postRepository.findByTitleContaining(text);
+    }
 }

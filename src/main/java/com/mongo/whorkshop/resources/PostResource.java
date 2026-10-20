@@ -3,6 +3,7 @@ package com.mongo.whorkshop.resources;
 import com.mongo.whorkshop.domain.Post;
 import com.mongo.whorkshop.domain.User;
 import com.mongo.whorkshop.dto.UserDTO;
+import com.mongo.whorkshop.resources.util.URL;
 import com.mongo.whorkshop.service.PostServices;
 import com.mongo.whorkshop.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,11 @@ public class PostResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    @GetMapping(value = "/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text",defaultValue = "") String text) {
+        text = URL.decodeParam(text);
+        List<Post> list = postServices.findByTitle(text);
+        return ResponseEntity.ok().body(list);
+    }
 
 }
