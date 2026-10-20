@@ -1,5 +1,6 @@
 package com.mongo.whorkshop.resources;
 
+import com.mongo.whorkshop.domain.Post;
 import com.mongo.whorkshop.domain.User;
 import com.mongo.whorkshop.dto.UserDTO;
 import com.mongo.whorkshop.service.UserServices;
@@ -52,6 +53,12 @@ public class UserResource {
         obj.setId(id);
         obj = userServices.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = userServices.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
